@@ -5,7 +5,6 @@ import com.assignment.api.config.JacksonObjectMapper;
 import com.assignment.api.model.Car;
 import com.assignment.api.model.dto.UserRegisterDTO;
 import com.assignment.api.utils.Constants;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.glassfish.jersey.test.DeploymentContext;
