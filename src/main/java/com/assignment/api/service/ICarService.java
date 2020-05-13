@@ -8,15 +8,15 @@ import java.util.Optional;
 
 public interface ICarService {
 
-    public List<CarSearchResultDTO> findAvailableCarsWithinDefaultDistance(Double latitude, Double longitude);
+    List<CarSearchResultDTO> findAvailableCarsWithinDefaultDistance(Double latitude, Double longitude);
 
-    public boolean blockCar(Integer userId, Integer carId);
+    boolean blockCar(Integer userId, Integer carId);
 
-    public void checkAndTrowExceptionIfUserAlreadyBlockedACar(Integer userId);
+    void checkAndTrowExceptionIfUserAlreadyBlockedACar(Integer userId);
 
-    public Car findByIdAndUserIdIsNullOrThrowException(Integer carId);
+    Car findByIdAndUserIdIsNullOrThrowException(Integer carId);
 
-    public Optional<Car> getBlockedCar(Integer userId);
+    Optional<Car> getBlockedCar(Integer userId);
 
     Integer saveOrUpdate(Car car);
 }

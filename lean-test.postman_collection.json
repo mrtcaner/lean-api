@@ -1,0 +1,122 @@
+{
+	"info": {
+		"name": "mbition-test",
+		"_postman_id": "f7c6a5a2-33a3-cb78-0dfd-696d14646903",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add car",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4a68707d-ab42-406e-8f9a-1e14b4981942",
+						"type": "text/javascript",
+						"exec": [
+							"var cars = pm.environment.get(\"cars\");",
+							"",
+							"if(!cars){",
+							"    console.log(\"init!\");",
+							"    cars = [",
+							"    {",
+							"        \"id\": \"\",",
+							"        \"maker\": \"Mercedes\",",
+							"        \"model\": \"CLK Home\",",
+							"        \"year\": 2020,",
+							"        \"latitude\": 52.537845,",
+							"        \"longitude\": 13.424113",
+							"     },",
+							"     {",
+							"        \"id\": \"\",",
+							"        \"maker\": \"Mercedes\",",
+							"        \"model\": \"CLK 70 METERS\",",
+							"        \"year\": 2020,",
+							"        \"latitude\": 52.537206,",
+							"        \"longitude\": 13.423190",
+							"     },",
+							"     {",
+							"         \"id\": \"\",",
+							"         \"maker\": \"Mercedes\",",
+							"         \"model\": \"CLK 930 METERS\",",
+							"         \"year\": 2020,",
+							"         \"latitude\": 52.538374,",
+							"         \"longitude\": 13.420046",
+							"     },",
+							"     {",
+							"         \"id\": \"\",",
+							"         \"maker\": \"Mercedes\",",
+							"         \"model\": \"CLK out of range\",",
+							"         \"year\": 2020,",
+							"         \"latitude\": 52.531920,",
+							"         \"longitude\": 13.412117",
+							"     },",
+							"     {",
+							"         \"id\": \"\",",
+							"         \"maker\": \"Mercedes\",",
+							"         \"model\": \"CLK in range in the middle\",",
+							"         \"year\": 2020,",
+							"         \"latitude\": 52.536886,",
+							"         \"longitude\": 13.420915",
+							"     }",
+							"    ];",
+							"}",
+							"console.log(\"cars:\", cars);",
+							"var currentCar = cars.shift();",
+							"console.log(\"currentCar\",currentCar);",
+							"pm.environment.set(\"car\",JSON.stringify(currentCar));",
+							"pm.environment.set(\"cars\", cars);",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "80b4a764-cebf-42dd-9ce3-26a73adda220",
+						"type": "text/javascript",
+						"exec": [
+							"var cars = pm.environment.get(\"cars\");",
+							"",
+							"if(cars && cars.length > 0){",
+							"    postman.setNextRequest(\"add car\");    ",
+							"}else{",
+							"    postman.setNextRequest(null);    ",
+							"}",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{car}}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -20,6 +20,10 @@
      
     - java -jar .\target\lean-api-1.0-SNAPSHOT.jar
     
+    application runs on http://localhost:8080
+    
+    There is postman collection at project root
+    
 ## Test & reports
 
 - There are 3 outputs for test results under target/site folder. Run;

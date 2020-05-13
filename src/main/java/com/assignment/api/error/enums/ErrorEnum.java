@@ -6,12 +6,6 @@ public enum ErrorEnum {
     INVALID_DATA("Invalid Data",1001),
     RESOURCE_NOT_FOUND("Resource not found",1002),
 
-
-    UPDATE_USERID_TYPE_CANNOT_CHANGE("UserId and Type cannot be changed at update",1003),
-    EXERCISE_ENTITY_INVALID_EXERCISE_TYPE("Invalid exercise type",1004),
-    EXERCISE_OVERLAPPING_EXERCISE("Only one exercise can be performed in a specific time interval",1005),
-
-
     EMAIL_ALREADY_USED("Email address is already in use",1006),
     CANNOT_BLOCK_MORE_THAN_ONE("Already blocked a car. Must unblock before block a new one",1007),
     CAR_NO_LONGER_AVAILABLE("Car is no longer available",1008),

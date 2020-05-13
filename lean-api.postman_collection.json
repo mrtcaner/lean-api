@@ -1,0 +1,284 @@
+{
+	"info": {
+		"name": "mbition-api",
+		"_postman_id": "5e94e13a-c4b3-fd37-661b-d6c60c0a09ab",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n \"name\": \"test\",\r\n \"surname\": \"user\",\r\n \"email\": \"test123@test.com\",\r\n \"password\": \"T1.a234\"\r\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n \"pointX\": \"23.0\",\r\n \"pointY\": \"16.1\"\r\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/search?latitude=52.537845&longitude=13.424113",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "52.537845",
+							"equals": true
+						},
+						{
+							"key": "longitude",
+							"value": "13.424113",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "block",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/car/6/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car",
+						"6",
+						"5"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "rent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rent/6/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rent",
+						"6",
+						"5"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "rent",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rent/7/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rent",
+						"7",
+						"6"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "rent",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n \"id\": \"\",\r\n \"userId\": \"123\",\r\n \"description\": \" \",\r\n \"type\": \"RUNNNG\",\r\n \"startTime\": \"2016-04-06T10:10:09Z\",\r\n \"duration\": 80,\r\n \"calories\": 88\r\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rent/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rent",
+						"6"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "block",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n \"id\": \"\",\r\n \"userId\": \"123\",\r\n \"description\": \" \",\r\n \"type\": \"RUNNNG\",\r\n \"startTime\": \"2016-04-06T10:10:09Z\",\r\n \"duration\": 80,\r\n \"calories\": 88\r\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/car/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car",
+						"6"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add car",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8d595612-fd7c-47c0-ada9-b5e1b4e7e691",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac5401f3-95ca-4106-a119-91fc3df3c46a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"id\": \"\",\n    \"maker\": \"Mercedes\",\n    \"model\": \"CLK\",\n    \"year\": 2020,\n    \"latitude\": 52.537845,\n    \"longitude\": 13.424113\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"car"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
