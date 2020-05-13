@@ -2,7 +2,7 @@
 
 ## Components
     
-- Jersey, HK2, Hibernate, H2, Lombok
+- Jersey, Guice, Hibernate, H2, Lombok
     
   - There is some integration and unit tests. Integration tests are in a different source base and build-helper is used
     to integrate it to project.
@@ -38,12 +38,6 @@
 - There are no test for controllers because there is no logic and there are integration tests.
 
 ## Notes
-
-- Integration with hibernate was troublesome. I used default IOC structure presented with Jersey but it lacks transaction management. Other
-alternatives were integrating Dagger or Guice but no luck. I thought about introducing transaction management through AOP and then ran into 
-issues with HK2.
-
-- Another problem with HK2 was validations on service level.
 
 - There are business requirements like tracking car during usage, keeping whereabouts data, decuting payments through queues and more were not
 my concerns during implementation but I was still aware of.
