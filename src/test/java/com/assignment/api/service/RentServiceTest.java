@@ -1,16 +1,15 @@
 package com.assignment.api.service;
 
-import com.assignment.api.model.Car;
-import com.assignment.api.model.Rent;
-import com.assignment.api.service.impl.UserServiceImpl;
 import com.assignment.api.dao.impl.CarDaoImpl;
 import com.assignment.api.dao.impl.RentDaoImpl;
 import com.assignment.api.dao.impl.UserDaoImpl;
 import com.assignment.api.error.exception.BusinessLogicException;
+import com.assignment.api.model.Car;
+import com.assignment.api.model.Rent;
 import com.assignment.api.model.User;
 import com.assignment.api.service.impl.RentServiceImpl;
+import com.assignment.api.service.impl.UserServiceImpl;
 import com.assignment.api.utils.Constants;
-import org.hibernate.Session;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,12 +19,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.inject.Provider;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -39,9 +36,6 @@ public class RentServiceTest {
 
     @Mock
     private RentDaoImpl rentDao;
-
-    @Mock
-    Provider<Session> sessionProvider;
 
     @InjectMocks
     private UserServiceImpl userService;
@@ -113,9 +107,6 @@ public class RentServiceTest {
         when(rentDao.findByIdAndUserIdAndStartDateIsNotNullAndEndDateIsNull(any(), any())).thenReturn(Optional.ofNullable(rent));
         when(carDao.findByUserId(any())).thenReturn(Optional.ofNullable(car));
         when(userDao.find(any(), any())).thenReturn(Optional.ofNullable(user));
-        Session mockSession = mock(Session.class);
-        when(mockSession.beginTransaction()).thenReturn(null);
-        when(sessionProvider.get()).thenReturn(mockSession);
         rentService.endRent(user.getId(), car.getId());
         assertNull(car.getUser());
         assertNotNull(rent.getEndDate());
@@ -127,9 +118,6 @@ public class RentServiceTest {
     public void rentEnd_whenInvalidRent_throwsBusinessLogicException() {
         rent.setCost(Constants.DEFAULT_RENT_COST);
         when(rentDao.findByIdAndUserIdAndStartDateIsNotNullAndEndDateIsNull(any(), any())).thenReturn(Optional.ofNullable(null));
-        Session mockSession = mock(Session.class);
-        when(mockSession.beginTransaction()).thenReturn(null);
-        when(sessionProvider.get()).thenReturn(mockSession);
         rentService.endRent(user.getId(), car.getId());
 
     }

@@ -38,7 +38,7 @@ public class CarControllerIT extends AbstractBaseControllerIT {
         Response response = saveCar(car);
         Car carSaved = response.readEntity(Car.class);
 
-        UserRegisterDTO registerDTO = UserPreparer.prepareUserRegisterDtos().get(0);
+        UserRegisterDTO registerDTO = UserPreparer.prepareUniqueUser();
         //save user
         response = saveUser(registerDTO);
         User user = response.readEntity(User.class);

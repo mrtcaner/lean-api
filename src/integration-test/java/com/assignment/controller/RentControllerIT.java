@@ -26,7 +26,7 @@ public class RentControllerIT extends AbstractBaseControllerIT {
         car = response.readEntity(Car.class);
 
         //save user
-        UserRegisterDTO registerDTO = UserPreparer.prepareUserRegisterDtos().get(0);
+        UserRegisterDTO registerDTO = UserPreparer.prepareUniqueUser();
         response = saveUser(registerDTO);
         User user = response.readEntity(User.class);
 
@@ -55,7 +55,7 @@ public class RentControllerIT extends AbstractBaseControllerIT {
         car = response.readEntity(Car.class);
 
         //save user
-        UserRegisterDTO registerDTO = UserPreparer.prepareUserRegisterDtos().get(0);
+        UserRegisterDTO registerDTO = UserPreparer.prepareUniqueUser();
         response = saveUser(registerDTO);
         User user = response.readEntity(User.class);
 
@@ -72,9 +72,8 @@ public class RentControllerIT extends AbstractBaseControllerIT {
         assertEquals(HttpStatus.OK_200, response.getStatus());
 
         //get user's rents
-        response = getUsersRents(user.getId());
-        List<Rent> rentList = response.readEntity(new GenericType<List<Rent>>() {
-        });
+        Response response1 = getUsersRents(user.getId());
+        List<Rent> rentList = response1.readEntity(new GenericType<List<Rent>>() {});
 
         assertEquals(rentList.size(), 1);
         Rent rentResp = rentList.get(0);

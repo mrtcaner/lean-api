@@ -30,8 +30,7 @@ public class RentController {
     @Path("/{rentId}/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response endRent(@PathParam("rentId") Integer rentId, @PathParam("userId") Integer userId) {
-        rentService.endRent(rentId, userId);
-        return Response.ok().build();
+        return Response.ok().entity(rentService.endRent(rentId, userId)).build();
     }
 
     @GET

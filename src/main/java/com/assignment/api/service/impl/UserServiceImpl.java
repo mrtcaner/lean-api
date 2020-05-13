@@ -10,7 +10,7 @@ import com.assignment.api.utils.Constants;
 import com.assignment.api.utils.PasswordUtils;
 import com.assignment.api.utils.Utils;
 
-import javax.inject.Inject;
+import com.google.inject.Inject;
 import java.util.Optional;
 
 public class UserServiceImpl implements IUserService {

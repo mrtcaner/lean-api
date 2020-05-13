@@ -4,8 +4,11 @@ import com.assignment.api.config.AppResourceConfig;
 import com.assignment.api.config.JacksonObjectMapper;
 import com.assignment.api.model.Car;
 import com.assignment.api.model.dto.UserRegisterDTO;
+import com.assignment.api.utils.Constants;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import org.glassfish.jersey.test.DeploymentContext;
 import org.glassfish.jersey.test.JerseyTest;
 
 import javax.ws.rs.client.Entity;
@@ -17,7 +20,12 @@ public abstract class AbstractBaseControllerIT extends JerseyTest {
 
     @Override
     protected Application configure() {
-        return new AppResourceConfig();
+        return new AppResourceConfig().packages(Constants.BASE_PACKAGE);
+    }
+
+    @Override
+    protected DeploymentContext configureDeployment() {
+        return DeploymentContext.builder(AppResourceConfig.class).build();
     }
 
     @Override
@@ -25,6 +33,7 @@ public abstract class AbstractBaseControllerIT extends JerseyTest {
         config.register(JacksonObjectMapper.class);
         config.register(JacksonJaxbJsonProvider.class);
     }
+
 
     protected Response saveUser(UserRegisterDTO userRegisterDTO) {
         Response response = target("/register").request(MediaType.APPLICATION_JSON_TYPE)

@@ -1,16 +1,14 @@
 package com.assignment.api.service.impl;
 
+import com.assignment.api.dao.ICarDao;
 import com.assignment.api.error.enums.ErrorEnum;
+import com.assignment.api.error.exception.BusinessLogicException;
 import com.assignment.api.model.Car;
 import com.assignment.api.model.dto.CarSearchResultDTO;
-import com.assignment.api.service.IUserService;
-import com.assignment.api.dao.ICarDao;
-import com.assignment.api.error.exception.BusinessLogicException;
 import com.assignment.api.service.ICarService;
-import org.hibernate.Session;
+import com.assignment.api.service.IUserService;
+import com.google.inject.Inject;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +20,6 @@ public class CarServiceImpl implements ICarService {
 
     @Inject
     ICarDao carDao;
-
-    @Inject
-    Provider<Session> sessionProvider;
 
     public List<CarSearchResultDTO> findAvailableCarsWithinDefaultDistance(Double latitude, Double longitude) {
         return carDao.findAvailableCarsWithinDefaultDistance(latitude, longitude);

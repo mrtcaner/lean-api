@@ -15,7 +15,7 @@ public class UserRegisterControllerIT extends AbstractBaseControllerIT {
 
     @Test
     public void userRegister_whenGivenValidUser_thenReturnsUserWith201() {
-        UserRegisterDTO registerDTO = UserPreparer.prepareUserRegisterDtos().get(0);
+        UserRegisterDTO registerDTO = UserPreparer.prepareUniqueUser();
 
         Response response = saveUser(registerDTO);
         assertEquals(HttpStatus.CREATED_201, response.getStatus());

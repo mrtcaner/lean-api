@@ -8,7 +8,7 @@ public interface IRentService {
 
     Rent startRent(Integer userId, Integer carId);
 
-    void endRent(Integer rentId, Integer userId);
+    Rent endRent(Integer rentId, Integer userId);
 
     List<Rent> getUsersRents(Integer userId);
 

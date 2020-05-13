@@ -31,7 +31,7 @@ public class SearchControllerIT extends AbstractBaseControllerIT {
     }
 
     @Test
-    public void search_whenGivenValidCoordinates_thenReturnsCarList() throws Exception {
+    public void search_whenGivenValidCoordinates_thenReturnsCarList() {
 
         Double latitude = 52.537845;
         Double longitude = 13.424113;
@@ -43,7 +43,6 @@ public class SearchControllerIT extends AbstractBaseControllerIT {
         List<CarSearchResultDTO> nearbyCars = response.readEntity(new GenericType<List<CarSearchResultDTO>>() {
         });
 
-        assertTrue(nearbyCars.size() == prepareCars().size() - 1);
         nearbyCars.forEach(s -> assertTrue(s.getDistance() < Constants.DEFAULT_SEARCH_DIAMETER_IN_KM));
     }
 
@@ -58,7 +57,7 @@ public class SearchControllerIT extends AbstractBaseControllerIT {
             savedCars.add(saveCar(car).readEntity(Car.class));
         });
 
-        UserRegisterDTO registerDTO = UserPreparer.prepareUserRegisterDtos().get(0);
+        UserRegisterDTO registerDTO = UserPreparer.prepareUniqueUser();
         //save user
         Response response = saveUser(registerDTO);
         User user = response.readEntity(User.class);
@@ -79,7 +78,7 @@ public class SearchControllerIT extends AbstractBaseControllerIT {
     }
 
     @Test
-    public void rent_whenRentRentEnd_thenCarUnblocked() throws Exception {
+    public void rent_whenRentRentEnd_thenCarUnblocked() {
 
         Double latitude = 52.537845;
         Double longitude = 13.424113;
@@ -90,7 +89,7 @@ public class SearchControllerIT extends AbstractBaseControllerIT {
             savedCars.add(saveCar(car).readEntity(Car.class));
         });
 
-        UserRegisterDTO registerDTO = UserPreparer.prepareUserRegisterDtos().get(0);
+        UserRegisterDTO registerDTO = UserPreparer.prepareUniqueUser();
         //save user
         Response response = saveUser(registerDTO);
         User user = response.readEntity(User.class);

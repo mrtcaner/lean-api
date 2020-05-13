@@ -1,20 +1,20 @@
 package com.assignment.api.service.impl;
 
+import com.assignment.api.dao.ICarDao;
+import com.assignment.api.dao.IRentDao;
+import com.assignment.api.dao.IUserDao;
 import com.assignment.api.error.enums.ErrorEnum;
+import com.assignment.api.error.exception.BusinessLogicException;
 import com.assignment.api.model.Car;
 import com.assignment.api.model.Rent;
 import com.assignment.api.model.User;
 import com.assignment.api.service.IRentService;
 import com.assignment.api.service.IUserService;
 import com.assignment.api.utils.Constants;
-import com.assignment.api.dao.ICarDao;
-import com.assignment.api.dao.IRentDao;
-import com.assignment.api.dao.IUserDao;
-import com.assignment.api.error.exception.BusinessLogicException;
-import org.hibernate.Session;
+import com.google.inject.Inject;
+import com.google.inject.persist.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
+import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +34,7 @@ public class RentServiceImpl implements IRentService {
     IUserDao userRepository;
 
     @Inject
-    Provider<Session> sessionProvider;
+    EntityManager entityManager;
 
     public Rent startRent(Integer userId, Integer carId) {
         checkAndThrowExceptionIfAlreadyStarted(userId, carId);
@@ -64,18 +64,14 @@ public class RentServiceImpl implements IRentService {
         return carOpt.get();
     }
 
-    public void endRent(Integer rentId, Integer userId) {
-        startTransaction();
+    @Transactional
+    public Rent endRent(Integer rentId, Integer userId) {
         Rent rent = findStartedRentThrowExceptionIfNotExist(rentId, userId);
         rent.setEndDate(LocalDateTime.now());
         rentRepository.saveOrUpdate(rent);
         findCarByUserIdAndMakeAvailable(userId);
         findUserAndDeductCost(userId, rent.getCost());
-    }
-
-    protected void startTransaction() {
-        Session session = sessionProvider.get();
-        session.beginTransaction();
+        return rent;
     }
 
     private void findCarByUserIdAndMakeAvailable(Integer userId) {

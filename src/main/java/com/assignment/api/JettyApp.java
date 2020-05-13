@@ -1,33 +1,32 @@
 package com.assignment.api;
 
-import com.assignment.api.config.AppResourceConfig;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.glassfish.jersey.servlet.ServletContainer;
 
 public class JettyApp {
 
     public static void main(String[] args) throws Exception {
         // Jersey
-        ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-        ServletContainer jerseyServletContainer = new ServletContainer(new AppResourceConfig());
-        ServletHolder jerseyServletHolder = new ServletHolder(jerseyServletContainer);
-        servletContextHandler.setContextPath("/");
-        servletContextHandler.addServlet(jerseyServletHolder, "/*");
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.setContextPath("/");
 
-        // Wire up Jetty
-        HandlerCollection handlerList = new HandlerCollection();
-        handlerList.setHandlers(new Handler[]{servletContextHandler});
-        Server server = new Server(8080);
-        server.setHandler(handlerList);
+        Server jettyServer = new Server(8080);
+        jettyServer.setHandler(context);
+
+        ServletHolder jerseyServlet = context.addServlet(
+                org.glassfish.jersey.servlet.ServletContainer.class, "/*");
+        jerseyServlet.setInitOrder(0);
+
+        // Tells the Jersey Servlet which REST service/class to load.
+        jerseyServlet.setInitParameter("javax.ws.rs.Application",
+                "com.assignment.api.config.AppResourceConfig");
+
         try {
-            server.start();
-            server.join();
+            jettyServer.start();
+            jettyServer.join();
         } finally {
-            server.destroy();
+            jettyServer.destroy();
         }
     }
 }

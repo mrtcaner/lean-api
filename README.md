@@ -22,7 +22,7 @@
     
 ## Test & reports
 
-- There are 3 outputs for test results under target folder. Run;
+- There are 3 outputs for test results under target/site folder. Run;
     
     - mvn clean verify
     
