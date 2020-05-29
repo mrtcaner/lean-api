@@ -39,10 +39,3 @@
     folders will be created. "jacoco-merged-test-coverage-report" folder contains merged results of unit and 
     integrations tests.
     
-- There are no test for controllers because there is no logic and there are integration tests.
-
-## Notes
-
-- There are business requirements like tracking car during usage, keeping whereabouts data, decuting payments through queues and more were not
-my concerns during implementation but I was still aware of.
-
